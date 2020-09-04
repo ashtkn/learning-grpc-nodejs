@@ -2,18 +2,26 @@
   "name": "learning-grpc-nodejs",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "dev:server": "ts-node-dev src/server/index.ts",
+    "dev:server": "ts-node-dev --respawn src/server/index.ts",
     "dev:client": "ts-node-dev src/client/index.ts",
+    "type-check": "tsc --noEmit",
     "lint": "eslint --ext .js,.ts --ignore-path .gitignore --ignore-path .eslintignore src",
     "format": "prettier --write 'src/**/*.{js,ts,json}'",
     "grpc:generate": "npm-run-all grpc:generate:js grpc:generate:ts",
     "grpc:generate:js": "grpc_tools_node_protoc --js_out=import_style=commonjs,binary:./src/generated --grpc_out=./src/generated --plugin=protoc-gen-grpc=$(which grpc_tools_node_protoc_plugin) -I ./src/proto ./src/proto/*.proto",
     "grpc:generate:ts": "grpc_tools_node_protoc --ts_out=./src/generated --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts -I ./src/proto ./src/proto/*.proto"
   },
-  "author": "Asahi Takenouchi <le-soleil-levant.0802@outlook.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashtkn/learning-grpc-nodejs.git"
+  },
+  "author": "Asahi Takenouchi",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ashtkn/learning-grpc-nodejs/issues"
+  },
+  "homepage": "https://github.com/ashtkn/learning-grpc-nodejs#readme",
   "husky": {
     "hooks": {
       "pre-commit": "tsc --noEmit && lint-staged"
@@ -24,7 +32,7 @@
       "npm run format"
     ],
     "src/**/*.{js,ts}": [
-      "npm run lint --fix"
+      "npm run type-check && npm run lint --fix"
     ]
   },
   "devDependencies": {
