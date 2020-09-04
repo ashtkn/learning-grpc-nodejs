@@ -9,7 +9,7 @@ const bootstrap = async () => {
     sayHello: (call, callback) => {
       const response = new HelloResponse()
       response.setMessage(
-        `こんにちわ ID: ${call.request.getId()} + ${call.request.getName()}`
+        `Hello!! Your ID is ${call.request.getId()} and your name is ${call.request.getName()}`
       )
       callback(null, response)
     },
