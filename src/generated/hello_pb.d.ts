@@ -1,17 +1,14 @@
 // package: hello
 // file: hello.proto
 
-/* tslint:disable */
-/* eslint-disable */
-
 import * as jspb from 'google-protobuf'
 
 export class HelloRequest extends jspb.Message {
   getId(): number
-  setId(value: number): HelloRequest
+  setId(value: number): void
 
   getName(): string
-  setName(value: string): HelloRequest
+  setName(value: string): void
 
   serializeBinary(): Uint8Array
   toObject(includeInstance?: boolean): HelloRequest.AsObject
@@ -43,7 +40,7 @@ export namespace HelloRequest {
 
 export class HelloResponse extends jspb.Message {
   getMessage(): string
-  setMessage(value: string): HelloResponse
+  setMessage(value: string): void
 
   serializeBinary(): Uint8Array
   toObject(includeInstance?: boolean): HelloResponse.AsObject

@@ -1,14 +1,14 @@
-import grpc from 'grpc'
+import { credentials, Metadata } from '@grpc/grpc-js'
 
 import { GreeterClient } from '../generated/hello_grpc_pb'
 import { HelloRequest } from './../generated/hello_pb'
 
 const main = async () => {
   const client = new GreeterClient(
-    '127.0.0.1:50051',
-    grpc.credentials.createInsecure()
+    'localhost:50051',
+    credentials.createInsecure()
   )
-  const metadata = new grpc.Metadata()
+  const metadata = new Metadata()
 
   const request = new HelloRequest()
   request.setId(1)
@@ -18,7 +18,7 @@ const main = async () => {
     if (err) {
       console.error(err)
     } else {
-      console.log(`Received: ${data.getMessage()}`)
+      if (data) console.log(`Received: ${data.getMessage()}`)
     }
     client.close()
   })
